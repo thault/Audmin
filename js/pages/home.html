@@ -1,0 +1,37 @@
+<h1 class="mt-5">Audmin - Aultar.io admin interface</h1>
+<h3>
+    <ul>
+        <li>Total households: {{stats.totalHouseholds}}</li>
+        <li>Submitted HouseHolds: {{stats.submittedHouseholds}}</li>
+        <li>Total Guests: {{stats.totalGuests}}</li>
+        <li>RSVP Guests: {{stats.rsvpGuests}}</li>
+        <li>Total Songs: {{stats.totalSongs}}</li>
+    </ul>
+</h3>
+
+<div class=row>
+    <div class=col-sm>
+        <div class=house-row ng-repeat="house in houseHolds" >
+            <label class=click>{{house.name}} <input type="checkbox" ng-model="checked" ng-init="checked=false" /></label><br>
+            <div ng-if=checked class="animate-if">
+                Sudmitted RSVP:{{house.hasSubmitted}}<br>
+                RSVP passcode:{{house.passcode}}<br>
+                <div ng-repeat='guest in house.guests'>{{guest.fname}} {{guest.lname}}, {{guest.isRSVPed}}<br></div>
+            </div>
+        </div>
+    </div>
+</div>
+      <!--<h3>
+        <ul>
+        <li><a href="#/view">View Info</a>
+            <ul><li>Use this view info of students.</li></ul>  
+        </li>
+            <li><a href="#/new">New Student</a>
+          <ul><li>Use this to create new students.</li></ul>
+        </li>
+        <li><a href="#/edit">Edit Student</a>
+           <uL><li>Use this to add courses and edit student info.</li></uL>
+        </li>
+      </ul>        
+      </h3>
+        <h2>When viewing or editing a student, search by last name, and make sure to capitalize the first letter.</h2>-->

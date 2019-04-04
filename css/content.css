@@ -1,0 +1,14 @@
+.content{
+    background-color: white;
+    padding-top: 700px;
+}
+
+body {
+    background-color: cadetblue;
+}
+
+h1.house-row {
+    align-content: center;
+    border: 5,5,5,5;
+    background-color: aquamarine;
+}

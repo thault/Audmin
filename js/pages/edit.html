@@ -1,0 +1,73 @@
+ <h1>Edit Student Info</h1>
+        <form ng-submit=addCourse()>
+            
+            <input type="text" ng-model="selectSearch" ng-change=getDatalist(selectSearch)>
+            
+           <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+                <option ng-repeat="person in students" value="{{person._links.self.href}}">{{person.lastName}} , {{person.firstName}}</option>
+            </select>
+            <div id="studentInfo">
+                <h1>{{student.firstName}} {{student.lastName}}</h1>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">Council:</td>
+                        <td><input type="text" ng-model=student.council></td>
+                        <td style="font-weight: bold">District:</td>
+                        <td><input type="text" ng-model="student.district"></td>
+                        <td style="font-weight: bold">Unit:</td>
+                        <td><input type="text" ng-model="student.unit"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Bachelors:</td>
+                        <td><input type="text" ng-model=student.bachelor></td>
+                        <td style="font-weight: bold">Arrowhead:</td>
+                        <td><input type="text" ng-model="student.arrowhead"></td>
+                        <td style="font-weight: bold">Masters:</td>
+                        <td><input type="text" ng-model="student.master"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Key:</td>
+                        <td><input type="text" ng-model="student.key"></td>
+                        <td style="font-weight: bold">Thesis:</td>
+                        <td><input type="text" ng-model="student.thesis"></td>
+                        <td style="font-weight: bold">Project:</td>
+                        <td><input type="text" ng-model="student.project"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Presentation:</td>
+                        <td><input type="text" ng-model="student.presentation"></td>
+                        <td style="font-weight: bold">Doctorate:</td>
+                        <td><input type="text" ng-model="student.doctorate"></td>
+                    </tr>
+                </table>
+                
+                <table>
+                    <tr>
+                        <th>Course</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr ng-repeat="course in student.courses">
+                        <td>{{course.level}}{{course.number}}: {{course.name}}</td>
+                        <td>{{course.year}}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+                
+                
+                    <br><br><br>
+                        <input type=radio ng-model=courseLevel value=BCS name=courseLevel ng-change=getCourses(courseLevel)> Bachelors
+                        <input type=radio ng-model=courseLevel value=MCS name=courseLevel ng-change=getCourses(courseLevel)> Masters
+                        <input type=radio ng-model=courseLevel value=DCS name=courseLevel ng-change=getCourses(courseLevel)> Doctorate
+                        <input type=radio ng-model=courseLevel value=CED name=courseLevel ng-change=getCourses(courseLevel)> Continuing Education<br>
+                    <select ng-model="courseSelect" ng-change="loadCourseSelect(courseSelect)">
+                        <option ng-repeat="course in courses" value="{{course}}">{{course.level}}{{course.number}} {{course.name}}</option>
+                    </select>
+                <input type="text" ng-model="year">
+                <br>
+                
+                <input type="submit" value="Add to record">
+                </form>
+           <input type="button" ng-click="submitEdit()" value="Submit to database">
+
+

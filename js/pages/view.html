@@ -1,0 +1,54 @@
+<div class=content> 
+          <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+                <option ng-repeat="house in houseHolds" value="house.householdId">{{house.name}}</option>
+            </select>
+            
+            <!--<div id="studentInfo">
+                <h1>{{student.firstName}} {{student.lastName}}</h1>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">Council:</td>
+                        <td>{{student.council}}</td>
+                        <td style="font-weight: bold">District:</td>
+                        <td>{{student.district}}</td>
+                        <td style="font-weight: bold">Unit:</td>
+                        <td>{{student.unit}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Bachelors:</td>
+                        <td>{{student.bachelor}}</td>
+                        <td style="font-weight: bold">Arrowhead:</td>
+                        <td>{{student.arrowhead}}</td>
+                        <td style="font-weight: bold">Masters:</td>
+                        <td>{{student.master}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Key:</td>
+                        <td>{{student.key}}</td>
+                        <td style="font-weight: bold">Thesis:</td>
+                        <td>{{student.thesis}}</td>
+                        <td style="font-weight: bold">Project:</td>
+                        <td>{{student.project}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Presentation:</td>
+                        <td>{{student.presentation}}</td>
+                        <td style="font-weight: bold">Doctorate:</td>
+                        <td>{{student.doctorate}}</td>
+                    </tr>
+                </table>
+                
+                <table>
+                    <tr>
+                       <tr>
+                        <th>Course</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr ng-repeat="course in student.courses">
+                        <td>{{course.level}}{{course.number}}: {{course.name}}</td>
+                        <td>{{course.year}}</td>
+                    </tr>
+                    
+                </table>
+            </div>-->
+      </div>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" ng-app=demo>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logo Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../css/logo-nav.css" rel="stylesheet">
+    
+    <link href="../../css/content.css">
+      
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+     <script src="../../js/crud.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../../index.html">
+          CommTrack ADMIN
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/public/pages/view.html">View Info<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/pages/new.html">New Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/pages/edit.html">Edit Student</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      
+      <div class="container" id="content" ng-controller="Students">
+       <div class=content> 
+           <h1>View Students</h1>
+          <input type="text" ng-model="selectSearch" ng-change=getDatalist(selectSearch)>
+
+          <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+                <option ng-repeat="person in students" value="{{person._links.self.href}}">{{person.lastName}} , {{person.firstName}}</option>
+            </select>
+            
+            <div id="studentInfo">
+                <h1>{{student.firstName}} {{student.lastName}}</h1>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">Council:</td>
+                        <td>{{student.council}}</td>
+                        <td style="font-weight: bold">District:</td>
+                        <td>{{student.district}}</td>
+                        <td style="font-weight: bold">Unit:</td>
+                        <td>{{student.unit}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Bachelors:</td>
+                        <td>{{student.bachelor}}</td>
+                        <td style="font-weight: bold">Arrowhead:</td>
+                        <td>{{student.arrowhead}}</td>
+                        <td style="font-weight: bold">Masters:</td>
+                        <td>{{student.master}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Key:</td>
+                        <td>{{student.key}}</td>
+                        <td style="font-weight: bold">Thesis:</td>
+                        <td>{{student.thesis}}</td>
+                        <td style="font-weight: bold">Project:</td>
+                        <td>{{student.project}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">Presentation:</td>
+                        <td>{{student.presentation}}</td>
+                        <td style="font-weight: bold">Doctorate:</td>
+                        <td>{{student.doctorate}}</td>
+                    </tr>
+                </table>
+                
+                <table>
+                    <tr>
+                       <tr>
+                        <th>Course</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr ng-repeat="course in student.courses">
+                        <td>{{course.level}}{{course.number}}: {{course.name}}</td>
+                        <td>{{course.year}}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+      </div>
+      </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
