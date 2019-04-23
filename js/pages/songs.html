@@ -1,0 +1,11 @@
+<div class =row>
+    <div class="col-lg">
+        <h1>Songs requests</h1>
+        <p>Ordered by the tier of the requestor.</p>
+    </div>
+</div>
+<div class="row">
+        <ul style="list-style: none;">
+            <li ng-repeat="song in sortedSongs"> {{song.title}}, {{song.artist}} <button ng-click="deleteSong(song)">Delete</button></li>
+        </ul>
+</div>

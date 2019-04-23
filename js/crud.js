@@ -5,10 +5,10 @@ demo.config(function($routeProvider) {
       $routeProvider
       
 
-      /*.when('/', {
+      .when('/', {
         templateUrl : 'js/pages/login.html',
         controller  : 'Audmin'
-      })*/
+      })
     
       .when('/view', {
         templateUrl : 'js/pages/view.html',
@@ -29,23 +29,29 @@ demo.config(function($routeProvider) {
         templateUrl : 'js/pages/home.html',
         controller  : 'Audmin'
       })
+    
+      .when('/songs', {
+        templateUrl : 'js/pages/songs.html',
+        controller  : 'Audmin'
+      })
 
       .otherwise({redirectTo: '/home'});
     });
 
-demo.controller('Audmin', function($scope, $location, $http) {
+demo.controller('Audmin', function($scope, $location, $http, $route) {
     
     var URL= 'http://test.aultar.wedding:8080/';
     $scope.studentURL;
     $scope.stats;
     $scope.authData;
+    //console.log(location);
+    //$scope.authdata = window.btoa('user:password');
+    //$http.defaults.headers.common['Authorization'] = 'Basic ' + $scope.authdata;
     
-    $scope.authdata = window.btoa('1337:password123');
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + $scope.authdata;
     
 
     
-   /* $scope.login = function(){
+   $scope.login = function(){
         //console.log('poop');
         $scope.authdata = window.btoa($scope.username + ':' + $scope.password);
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $scope.authdata;
@@ -64,7 +70,7 @@ demo.controller('Audmin', function($scope, $location, $http) {
                 alert("Login failed");
             }
         });
-    }*/
+    }
     
     $scope.getStats = function() {
         $http.get(URL+'stats').
@@ -75,7 +81,6 @@ demo.controller('Audmin', function($scope, $location, $http) {
         });
     }
     
-    $scope.getStats();
     
     $scope.getDatalist = function(){
         $http.get(URL+'households').then(function(response){
@@ -84,25 +89,85 @@ demo.controller('Audmin', function($scope, $location, $http) {
         });
     }
     
-    $scope.getDatalist();
+    $scope.getSongs = function(){
+        $http.get(URL+'songs').then(function(response){
+           $scope.songs = response.data;
+            var one = new Array;
+            var two=new Array;
+            var three=new Array;
+            var four = new Array;
+            var x =0
+            for(x = 0; x<$scope.songs.length; x++)
+                {
+                    
+                    var i = $scope.songs[x].order
+                    switch(i)
+                    {
+                        case 1:
+                            one.push($scope.songs[x]);
+                            break;
+                        case 2:
+                            two.push($scope.songs[x]);
+                            break;
+                        case 3:
+                            three.push($scope.songs[x]);
+                            break;
+                        case 4:
+                            four.push($scope.songs[x]);
+                            break;
+                            
+                    }
+                }
+            
+            //console.log(one);
+            //;
+            //;
+            //one.concat(two.concat(three.concat(four)));
+            $scope.sortedSongs= one.concat(two.concat(three.concat(four)));
+            
+            
+            //console.log(response.data);
+        });
+    }
+    
+    $scope.deleteSong = function(song){
+        $http.delete(URL+'songs/'+song.songId).then(function(response){
+            $route.reload();
+        });
+        
+    }
+    
+    $scope.showSelectValue = function(mySelect) {
+        console.log(mySelect);        
+        $http.get(URL+'households/'+mySelect).
+        then(function(response) {
+            $scope.houseEdit=response.data;
+            //console.log($scope.student)
+        });
+            }
+    
+    if(location.hash =='#/home')
+        {
+            $scope.getDatalist();
+            $scope.getStats();
+        }
+    
+    if(location.hash == '#/songs')
+        {
+            $scope.getSongs();
+        }
+    
+     if(location.hash =='#/edit')
+        {
+            $scope.getDatalist();
+        }
     //$scope.getDatalist('hello');
     /*
     //$scope.getStudents();
     //$scope.getCourses();
     
     
-    $scope.showSelectValue = function(mySelect) {
-                var res = mySelect.split("/");
-                //console.log(res[4]);
-                $scope.studentURL =URL +"students/" +res[4];
-                //console.log($scope.studentURL)
-                
-                $http.get($scope.studentURL).
-        then(function(response) {
-            $scope.student=response.data;
-            //console.log($scope.student)
-        });
-            }
+    
     
     $scope.newStudent = function(){
        var toSend = JSON.stringify({firstName: $scope.fName, lastName: $scope.lName, council: $scope.council, district: $scope.district, unit: $scope.unit, email: $scope.email, password:$scope.password});
